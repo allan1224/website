@@ -148,6 +148,7 @@
                 <li>LEDs</li>
                 <li>Cooling unit</li>
                 <li>Power supply</li>
+                <li>Spo2 monitor</li>
                 <li>Headband</li>
             </ul>
         </div>
@@ -191,6 +192,18 @@
         </p>
 
         <div>&nbsp;</div>    
+
+        <p>
+        <u>SpO2 Monitor</u>
+        </p>
+
+        <p>
+        Oxygen saturation will be measured and displayed on a software app. Using the MAXREFDES117 module, red and IR light values will be obtained and then processed by a microcontoller in order to calculate SpO2 levels. Then, this data will be sent to a software interface app via bluetooth for further processing. A batch of SpO2 data levels caclulated by the microcontoller will be periodically fed through an autoencoder on the mobile device to de-noise the signal. Since the current firmware would calculate SpO2 will lots of noise, it would be good to train a model to remove this noise and have more accurate readings. 
+
+        </p>
+       
+
+        <div>&nbsp;</div>   
 
         <p>
         <u>Head band</u>
