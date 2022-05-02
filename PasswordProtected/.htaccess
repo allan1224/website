@@ -1,4 +1,4 @@
 AuthType Basic  
 AuthName "restricted area"  
-AuthUserFile /Users/allan/Documents/website/LED_headband.html/.htpasswd  
+AuthUserFile /allan/Documents/website/LED_headband.html/.htpasswd  
 require valid-user
