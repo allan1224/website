@@ -43,187 +43,10 @@
    <p class="nes-balloon from-left nes-pointer">
    Brain Stimulation Headband
    </p>
-</div>
-
-<div>&nbsp;</div>
-
-<div class="nes-container is-rounded with-title" style="width:70%; margin: 0 auto;">
-    <span class="title">Motivation</span> 
-        <p>Trasncranial photobiomodulation can increase cognitive function and promote a healthy brain. <a href="https://www.nature.com/articles/s41598-021-97987-w">Previous research</a> has shown the effect of 1064 nm light on brain waves, corresponding to improved congitive function.
-        </p>
-        <div>&nbsp;</div>
-        <p>
-        Part of my job as a lab technician at the Gonzaelz-Lima lab is to analyze how a 1064 nm laser affects EEG signals. Below are topo plots I made to measure the change in mean band powers between stimulation and placebo. The laser stimulation corresponds to an increase in mean alpha power and a decrease in mean beta and delta powers. 
-        </p>
-         
-        <div>&nbsp;</div>
-
-        
-        <img src="topo_alpha.png" alt="alpha power increase" style="display:block;margin-left: auto;margin-right: auto; width: 70%;">
-        
-
-        <div>&nbsp;</div>
-        <p>
-         The problem is that this laser is extremely expensive and inconvenient for most people to actually use on a daily basis - we can't all have $20k lasers in our homes. This necessitates the need for a less expensive and more conveninent light therapy system. 
-        </p>
-        <div>&nbsp;</div>
-        <p>
-         This LED headband device is an attempt at an alternative to the laser with similar specifications
-        </p>
-
-</div>
-
-<div>&nbsp;</div>
-
-<div class="nes-container is-rounded with-title" style="width:70%; margin: 0 auto;">
-    <span class="title">LED Headband System Design</span> 
-       
-        <p><b>Target Specifications</b></p>
-        <div class="lists">
-            <ul class="nes-list is-disc">
-                <li>Optical power density: 250 mW/cm^2</li>
-                <li>Wavelength: 1064 nm</li>
-                <li>Dissipate ~3 W of power as heat</li>
-                <li>Maintain ambient temperature under 35 degrees C</li>
-                <li>Output ~750 mW @ 1 A (per LED)</li>
-            </ul>
-        </div>
-
-        <div>&nbsp;</div>
-
-        <p>
-        <u>Optical power density: 250 mW/cm^2</u>
-        </p>
-        <p>
-        <u>Wavelength: 1064 nm</u>
-        </p>
-        <p>
-        Specifications determined by 
-        <a href="https://www.frontiersin.org/articles/10.3389/fnins.2019.01129/full">previous research</a>
-        </p>
-
-        <div>&nbsp;</div>  
-
-        <p>
-        <u>Dissipate ~3 W of power as heat</u>
-        </p>
-        <p>LED Forward voltage = 1.5 V</p>
-        <p>LED Forward current = 1 A</p>
-        <p>Power (watts) = V (volts)*I (amps)</p>
-        <p>LED power = 1.5 V*1 A = 1.5 W (per LED)</p>
-        <p>Total radiated power = 750 mW (from datasheet)</p>
-        <p>Effeciency = (radiated power)/(LED power)</p>
-        <p>= 0.75/1.5 = 0.5 = 50%</p>
-        <p>Total LED power = 4*1.5 = 6 W</p> 
-        <p>Because only 50% efficient, about half of the power goes into optical power</p>
-        <p>The other half is turned into heat</p>
-        <p>Heat watts = 0.5*6 = 3 W</p>
-        <p>Therefore, we must cool 3 W of heat power</p>
-
-        <div>&nbsp;</div>
-
-        <p>
-        <u>Maintain ambient temperature under 35 degrees C</u>
-        </p>
-        <p>
-        The LEDs will be in close contact with the skin and must therefore be at a safe enough temperature to use. The whole point of this device is to improve health, so burning skin upon contact is literally the opposite of the goal. 
-        </p>
-
-
-
-         <p>
-        LED temperature will be monitored constantly by use of a thermistor. The thermistor resistance will be read by a microcontoller, using a voltage divider (located off-baord for thermal efficiency). By calculating the thermistor's response to temperature, the voltage input received by the microcontroller will be tranaformed to obtain a temperature in Celcius. This monitoring will eventually be used as a regulator, and will incorporate safety shutoff of the system. 
-        </p>
-
-
-          <p>
-        Another reason to monitor LED temperature is to determine how the temperature affects the optical power dissipation of the LED, which will be important in determining the necessary range of temperature in order to acheive the required power output.  
-        </p>
-
-        <div>&nbsp;</div>
-        
-        <p><b>Device Modules</b></p>
-        <div class="lists">
-            <ul class="nes-list is-disc">
-                <li>LEDs</li>
-                <li>Cooling unit</li>
-                <li>Power supply</li>
-                <li>SpO2 monitor</li>
-                <li>Headband</li>
-            </ul>
-        </div>
-
-        <div>&nbsp;</div>
-
-        <p>
-        <u>LEDs</u>
-        </p>
-        <p>
-        This module will consist of 4 high-powered infrared LEDs (1050-1070 nm) arranged in a 2x2 cm^2 matrix. In other words, the LEDs will form a square. The LED PCB will be made from aluminum and will be mounted to a heat sink and fan for effective heat dissipation. There will  be a diffuser screen that will serve as a barrier between the forehead and the hot LEDs, and it will also serve as the backplate to secure the mount of the PCB onto the heat sink fan.
-        <div>&nbsp;</div>
-        A thermistor will be connected to continuously monitor ambient temperature using a microcontroller. 
-        </p>
-
-        <img src="pcb.png" alt="circuit design" style="display:block;margin-left: auto;margin-right: auto; width: 50%;">
-
-        <div>&nbsp;</div>
-
-        <p>
-        <u>Cooling unit</u>
-        </p>
-        <p>
-        A heat sink with an integrated fan will be used to dissipate the 3 W of heat from the LEDs. The LED PCB will be mounted to the heat sink fan with a thermal interface paste. In addition to dissipating 3 W of heat, the cooling unit must also maintain LED ambient temperature to be safe enough to use, since these LEDs will be in close contact with the skin. 
-        </p>
-
-        <div>&nbsp;</div>    
-
-        <img src="fan.png" alt="fan" style="display:block;margin-left: auto;margin-right: auto; width: 50%;">   
-
-        <p>
-        <u>Power supply</u>
-        </p>
-
-        <p>
-        A portable battery bank (PD) will supply power to the device. It will power the LEDs, microcontoller, and heat sink fan. 
-        </p>
-        <p>
-        To power LEDs, the PD will be connected via usb-C to a trigger that would output the necessary voltage, like 9 or 12 V. This trigger will then be connected to a buck boost converter that will serve as an adjustable constant current source for the LEDs. 
-        <p>
-        The power bank will also power the fan via usb-A to cool the heat sink. Additionally, it will power an Arduino to monitor temperatures. 
-        </p>
-
-        <div>&nbsp;</div>    
-
-        <p>
-        <u>SpO2 Monitor</u>
-        </p>
-
-        <p>
-        One effect of transcranial photobiomodulation is the increase of oxygen in the brain. This can be measured with pulse oximetry. 
-        </p>
-
-         <img src="oxy.png" alt="spo2" style="display:block;margin-left: auto;margin-right: auto; width: 50%;">
-
-        <div>&nbsp;</div> 
-
-        <p>Before LED stimulation, a user will establish a baseline of SpO2 levels. After LED stimulation, SpO2 will be measured again, comparing it to baseline. Information about SpO2 will be disaplyed on a softawre app.
-        </p>
-
-        <p>
-      Using the MAXREFDES117 module, red and IR light values will be obtained and then processed by a microcontoller to perform signal processing and calculate SpO2 levels. Then, this data will be sent to a software interface app via bluetooth for visualization.  
-
-        </p>
-       
-
-        <div>&nbsp;</div>   
-
-        <p>
-        <u>Head band</u>
-        </p>   
-        <p>
-            The headband will need to be a one-size-fits all so anybody can use it. The headband will have a hole big enough to let the LED through the band. In addition, there must be mounting connectors embedded within the headband to mount the LED PCB/cooling unit. More research must be conducted. 
-        </p>
-    
+   <div style="width:10%; margin: 0 auto; display:block;">
+     <a href="LED_report.pdf" >
+        <button class="nes-btn is-error">View Documentation</button>
+     </a>
 </div>
 
 <div>&nbsp;</div>
@@ -233,64 +56,31 @@
 
         <div>&nbsp;</div>
 
-        <p>Update: 4/14/22</p>
+        <p>
+        It works!! 
+        </p>
         
 
-        <img src="proto.png" alt="prototype" style="display:block;margin-left: auto;margin-right: auto; width: 50%;">
+        <video width="640" height="360" controls>
+            <source src="led-vid.mp4" type="video/mp4">
+        </video>
 
         <div>&nbsp;</div>
 
-        <p>Getting the IR LEDs will take some time, but I don’t want that to slow down the development of this device. In the meantime, I’m substituting the IR LEDs for bright 3 W white LEDs, so I can continue developing the device without needing the infrared LEDs. And the 3 W LED I’m using now is sufficient because it still generates quite a bit of heat that I need to learn how to cool. Once I acquire the infrared LEDs and mount them to the PCB, the rest will already be taken care of which will make the LED transition easier. However, the actual distance the LEDs need to be from the forehead (to acheive 250 mW/cm^2) will be unknown until it can truly be tested empirically. 
+        <p>This initial prototype demonstrates proof-of-concept, just showing that the device is functioning. The encasing and connections of the next iteration will be much more stable.
         </p>
 
 </div>
 
 <div>&nbsp;</div>
 
-<div class="nes-container is-rounded with-title" style="width:70%; margin: 0 auto;">
-    <span class="title">Additional Features</span> 
-
-        <p>Once the base model is complete, with functioning LEDs that meet the proper power output, and with functioning temperature control, I would like to implement the following:
-        </p>
-
-        <div>&nbsp;</div>
-
-        <p><b>Additional Features to Implement</b></p>
-        <div class="lists">
-            <ul class="nes-list is-disc">
-                <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6514840/">SpO2</a>  real-time neurofeedback</li>
-                <li>More invovled software app</li>
-
-            </ul>
-        </div>
 
 
-
-</div>
-
-
-<div>&nbsp;</div>
 
 
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
-
-
-
-<!-- BODY GOES HERE x
-<div class="nes-container is-rounded with-title" style="width:70%; margin: 0 auto;">
-    <span class="title">*Note:</span> 
-       
-    <p>
-    <small>
-     This project is separate from the liquid coooled LED lamp I am developing at the Gonzalez-Lima lab. This project is also separate from my photobiomodulation headset capstone project. The objective is the same, but the design of this new device utilizes different circuit components and a thermal dissipation system. This makes it more portable and cheaper than the device being developed at the lab, and more effective than my capstone project. All knowledge aquired in order to build this device is open source and can be found on the internet. Research regarding the device specifications was made possible by the Gonzalez-Lima lab. I am developing this device on my own time with my own resources, and therefore, the implementation of this project is my own. 
-    </small>
-    </p>
-
-</div>
-
--->
 
 
 <script src="interaction.js"></script>
